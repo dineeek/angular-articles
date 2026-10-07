@@ -10,6 +10,7 @@ Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, TypeScript 6.0, Vitest.
 | Path | What it shows |
 |-|-|
 | `src/lib/call-state/with-call-state.ts` | `withCallState()` for one request, `withCallState({ collection })` and `withCallState({ collections })`, with `setLoading`, `setLoaded` and `setError` |
+| `src/lib/call-state/single-request/with-call-state.ts` | The one-request version from the article, as one file: the union, the feature, the three setters and `toErrorMessage`. Not exported from the entry point, because its names match the full version |
 | `src/lib/users/users.store.ts` | The `UsersStore` from the 2024 article, ported to signalStore with `rxMethod` and `tapResponse` |
 | `src/lib/users/users-list.ts` | A list that keeps the old users on screen while a refresh loads |
 | `src/lib/profile/profile.store.ts` | A profile store whose state field does not collide with the derived `profileError` |

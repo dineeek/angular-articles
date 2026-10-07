@@ -10,11 +10,15 @@ All commands run from the repository root through `corepack pnpm exec`.
 | Command | Result | Status |
 |-|-|-|
 | `ng build call-state` | Built call-state | pass |
-| `ng test call-state --watch=false` | 5 files, 26 tests passed | pass |
+| `ng test call-state --watch=false` | 6 files, 29 tests passed | pass |
 | `ng lint call-state` | All files pass linting | pass |
 | `node 07-call-state-feature/experiments/run.mjs` | 20 of 20 cases match their expected result | pass |
 
 The baseline at commit 4dda0c8 was green according to the task brief. It was not run again here.
+
+Re-run on 2026-10-07 after adding `src/lib/call-state/single-request/` (the article's one-request version of
+the feature, with a spec of three tests): build pass, 6 files and 29 tests pass, lint pass, runner 20 of 20.
+Before the change the same four gates gave 5 files and 26 tests.
 
 Two mutation checks showed the specs can fail. Removing the `message` branch from `setError` failed
 "uses the message of an HttpErrorResponse". Changing one `expectTypeOf` to `Signal<number>` failed
