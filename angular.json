@@ -180,6 +180,42 @@
           }
         }
       }
+    },
+    "store-features": {
+      "projectType": "library",
+      "root": "19-split-store-features",
+      "sourceRoot": "19-split-store-features/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "19-split-store-features/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "19-split-store-features/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "19-split-store-features/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "19-split-store-features/**/*.ts",
+              "19-split-store-features/**/*.html"
+            ],
+            "eslintConfig": "19-split-store-features/eslint.config.js"
+          }
+        }
+      }
     }
   }
 }

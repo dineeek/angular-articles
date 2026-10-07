@@ -4,7 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "call-state": ["./dist/call-state"]
+      "call-state": ["./dist/call-state"],
+      "store-features": ["./dist/store-features"]
     },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -41,6 +42,12 @@
     },
     {
       "path": "./11-lost-in-the-merge/tsconfig.spec.json"
+    },
+    {
+      "path": "./19-split-store-features/tsconfig.lib.json"
+    },
+    {
+      "path": "./19-split-store-features/tsconfig.spec.json"
     }
   ]
 }
