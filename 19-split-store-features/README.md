@@ -1,64 +1,40 @@
-# StoreFeatures
+# 19: split a signalStore into features
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Companion code for the article "Three ways to split a signalStore across files. Two of them do not get
+past the compiler and the linter". It reuses `withCallState` from
+[07-call-state-feature](../07-call-state-feature/README.md).
 
-## Code scaffolding
+Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, TypeScript 6.0, Vitest.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## What is here
 
-```bash
-ng generate component component-name
-```
+| Path | What it shows |
+|-|-|
+| `src/lib/directory/directory.store.ts` | The composition file: `withUsers()`, then `withRoles` and `withProfile` through `withFeature`, then the reactions in `onInit` |
+| `src/lib/directory/features/` | One feature per file. Each owns its state and its call state, and takes a source type that names only what it reads |
+| `src/lib/directory/effects/` | Reactions that cross features, as plain functions built on `signalMethod`. They clear the old roles and profile when the user changes, and a direct `loadRoles()` keeps them |
+| `src/lib/call-state/with-call-state.ts` | `withCallState` from 07, copied unchanged |
+| `src/lib/directory/features/with-roles.spec.ts` | One feature tested alone, in a store of its own with a fake source |
+| `src/lib/directory/directory.store.spec.ts` | The whole store: users, then roles and profile for the selected user |
+| `experiments/` | Cases that fail on purpose: features in the wrong order, a private member read from outside, hand-written result types that drift from the feature |
+| `RESULTS.md` | What each check found, with the exact error text |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Run it
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
-
-```bash
-ng build store-features
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/store-features
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+From the repository root:
 
 ```bash
-ng test
+pnpm install
+pnpm ng build store-features
+pnpm ng test store-features --watch=false
+pnpm ng lint store-features
+node 19-split-store-features/experiments/run.mjs
 ```
 
-## Running end-to-end tests
+The last command runs every experiment and compares it with the result it should give.
+Add `--keep` to keep the compiler output in `experiments/out`.
+Add `--no-strict` to compile the cases with `strict: false`. TypeScript 6 turns `strict` on when a
+tsconfig does not set it, so the default run is the strict one.
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The experiments stay out of the library build and the default test run. The runner also checks
+three failing routes again, from `07-call-state-feature/experiments/split/`.
