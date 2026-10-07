@@ -1,64 +1,36 @@
-# CallState
+# 07: a call state feature for signalStore
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Companion code for the article "I put request data inside the union. signalStore changed my mind".
+It follows up on [Prefer Valid State Types in TypeScript](https://blog.stackademic.com/valid-state-types-in-typescript-65c18a414d3c) (2024).
 
-## Code scaffolding
+Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, TypeScript 6.0, Vitest.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## What is here
 
-```bash
-ng generate component component-name
-```
+| Path | What it shows |
+|-|-|
+| `src/lib/call-state/with-call-state.ts` | `withCallState()` for one request, `withCallState({ collection })` and `withCallState({ collections })`, with `setLoading`, `setLoaded` and `setError` |
+| `src/lib/users/users.store.ts` | The `UsersStore` from the 2024 article, ported to signalStore with `rxMethod` and `tapResponse` |
+| `src/lib/users/users-list.ts` | A list that keeps the old users on screen while a refresh loads |
+| `src/lib/profile/profile.store.ts` | A profile store whose state field does not collide with the derived `profileError` |
+| `src/lib/split/` | One store split into `withUsers` and `withRoles`, composed with `withFeature` |
+| `experiments/` | Cases that fail on purpose: the name collision, two input-typed features, a hand-typed methods factory, and a feature return type behind a custom alias |
+| `RESULTS.md` | What each check found, with the exact error text |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Run it
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
-
-```bash
-ng build call-state
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/call-state
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+From the repository root:
 
 ```bash
-ng test
+pnpm install
+pnpm ng build call-state
+pnpm ng test call-state --watch=false
+pnpm ng lint call-state
+node 07-call-state-feature/experiments/run.mjs
 ```
 
-## Running end-to-end tests
+The last command runs every experiment and compares it with the result it should give.
+Add `--keep` to keep the compiler output in `experiments/out`.
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The experiments stay out of the library build and the default test run.
+The lint run skips only the two `*-unused-generic.ts` files, because they exist to show the lint error.
