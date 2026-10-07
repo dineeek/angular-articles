@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.base.json",
+  "angularCompilerOptions": {
+    "strictTemplates": false,
+    "fullTemplateTypeCheck": false
+  }
+}
