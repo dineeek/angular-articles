@@ -8,5 +8,6 @@
         "parser": "angular"
       }
     }
-  ]
+  ],
+  "semi": false
 }

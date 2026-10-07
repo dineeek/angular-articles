@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CallState } from './call-state';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { CallState } from './call-state'
 
 describe('CallState', () => {
-  let component: CallState;
-  let fixture: ComponentFixture<CallState>;
+  let component: CallState
+  let fixture: ComponentFixture<CallState>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CallState],
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(CallState);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+    fixture = TestBed.createComponent(CallState)
+    component = fixture.componentInstance
+    await fixture.whenStable()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

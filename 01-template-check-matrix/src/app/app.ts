@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core'
 
 @Component({
   imports: [],
@@ -7,5 +7,5 @@ import { Component, signal } from '@angular/core';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('template-check-matrix');
+  protected readonly title = signal('template-check-matrix')
 }
