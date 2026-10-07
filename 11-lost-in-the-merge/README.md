@@ -1,6 +1,6 @@
 # 11. Lost in the merge
 
-Companion code for "CI was green and eight features were gone" (coming soon).
+Companion code for "How one merge deleted shipped features and every check stayed green" (coming soon).
 
 A merge can throw away template code while every check stays green. This folder shows how that happens in git, what the Angular compiler catches and what it misses, and a small script that finds mismatches between templates and classes.
 

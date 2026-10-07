@@ -11,7 +11,7 @@ All code here is invented for the articles. Names, domains and data are made up.
 |-|-|
 | [`01-template-check-matrix`](01-template-check-matrix) | Which check catches which Angular template bug? I tested eight (coming soon) |
 | [`07-call-state-feature`](07-call-state-feature) | I put request data inside the union. signalStore changed my mind (coming soon) |
-| [`11-lost-in-the-merge`](11-lost-in-the-merge) | CI was green and eight features were gone (coming soon) |
+| [`11-lost-in-the-merge`](11-lost-in-the-merge) | How one merge deleted shipped features and every check stayed green (coming soon) |
 
 ## Run it
 
