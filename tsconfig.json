@@ -1,0 +1,46 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "call-state": ["./dist/call-state"]
+    },
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./01-template-check-matrix/tsconfig.app.json"
+    },
+    {
+      "path": "./01-template-check-matrix/tsconfig.spec.json"
+    },
+    {
+      "path": "./07-call-state-feature/tsconfig.lib.json"
+    },
+    {
+      "path": "./07-call-state-feature/tsconfig.spec.json"
+    },
+    {
+      "path": "./11-lost-in-the-merge/tsconfig.app.json"
+    },
+    {
+      "path": "./11-lost-in-the-merge/tsconfig.spec.json"
+    }
+  ]
+}

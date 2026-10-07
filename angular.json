@@ -1,0 +1,185 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "pnpm"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "template-check-matrix": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "01-template-check-matrix",
+      "sourceRoot": "01-template-check-matrix/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "01-template-check-matrix/src/main.ts",
+            "tsConfig": "01-template-check-matrix/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "01-template-check-matrix/public"
+              }
+            ],
+            "styles": ["01-template-check-matrix/src/styles.css"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "template-check-matrix:build:production"
+            },
+            "development": {
+              "buildTarget": "template-check-matrix:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "01-template-check-matrix/**/*.ts",
+              "01-template-check-matrix/**/*.html"
+            ],
+            "eslintConfig": "01-template-check-matrix/eslint.config.js"
+          }
+        }
+      }
+    },
+    "call-state": {
+      "projectType": "library",
+      "root": "07-call-state-feature",
+      "sourceRoot": "07-call-state-feature/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "07-call-state-feature/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "07-call-state-feature/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "07-call-state-feature/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "07-call-state-feature/**/*.ts",
+              "07-call-state-feature/**/*.html"
+            ],
+            "eslintConfig": "07-call-state-feature/eslint.config.js"
+          }
+        }
+      }
+    },
+    "lost-in-the-merge": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "11-lost-in-the-merge",
+      "sourceRoot": "11-lost-in-the-merge/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "11-lost-in-the-merge/src/main.ts",
+            "tsConfig": "11-lost-in-the-merge/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "11-lost-in-the-merge/public"
+              }
+            ],
+            "styles": ["11-lost-in-the-merge/src/styles.css"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "lost-in-the-merge:build:production"
+            },
+            "development": {
+              "buildTarget": "lost-in-the-merge:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["11-lost-in-the-merge/**/*.ts", "11-lost-in-the-merge/**/*.html"],
+            "eslintConfig": "11-lost-in-the-merge/eslint.config.js"
+          }
+        }
+      }
+    }
+  }
+}
