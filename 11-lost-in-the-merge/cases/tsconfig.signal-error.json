@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.signal-warning.json",
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "extendedDiagnostics": {
+      "checks": {
+        "interpolatedSignalNotInvoked": "error"
+      }
+    }
+  }
+}

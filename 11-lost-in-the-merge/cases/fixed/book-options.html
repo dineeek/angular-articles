@@ -1,0 +1,9 @@
+@if (loadingOptions()) {
+  <p>Loading options...</p>
+} @else {
+  <ul>
+    @for (option of options(); track option) {
+      <li>{{ option }}</li>
+    }
+  </ul>
+}

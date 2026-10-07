@@ -1,0 +1,3 @@
+@if (canEdit && (book.isOwner || book.isSharedWithMe)) {
+  <button type="button">Edit {{ book.title }}</button>
+}
