@@ -1,6 +1,6 @@
 # 03. RxJS traps
 
-Companion code for "When concatMap reads your state later than you think" (coming soon).
+Companion code for "When concatMap reads your state later than you think" (publishes 1 Dec 2026).
 
 Two RxJS operators can run your code later, or with a different result, than the code suggests.
 `concatMap` calls its project function when a value reaches the front of its queue, so state read there is read late.
