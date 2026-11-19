@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/rxjs-traps-experiments",
+    "types": ["vitest/globals"]
+  },
+  "include": ["**/*.spec.ts"]
+}

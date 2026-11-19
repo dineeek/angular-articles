@@ -1,64 +1,46 @@
-# RxjsTraps
+# 03. RxJS traps
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Companion code for "When concatMap reads your state later than you think" (coming soon).
 
-## Code scaffolding
+Two RxJS operators can run your code later, or with a different result, than the code suggests.
+`concatMap` calls its project function when a value reaches the front of its queue, so state read there is read late.
+`catchError(() => [])` completes without a value, so a `forkJoin` that waits on it emits nothing.
+This folder shows both on an invented laptop store: a build page that saves parts through a queue, and a search filter panel.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, RxJS 7.8, TypeScript 6.0, Vitest.
 
-```bash
-ng generate component component-name
-```
+## What is here
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+| Path | What it shows |
+|-|-|
+| `repro/repro.mjs` | Plain Node and RxJS, no Angular: the late read with held-open subjects and with a synchronous `of()` mock, `catchError(() => [])` in `forkJoin`, an empty `forkJoin`, `shareReplay` and `share` after an error, and a throw inside a subscriber with and without `useDeprecatedSynchronousErrorHandling` |
+| `src/lib/laptop-build/late-read-build.store.ts` | The build store that reads the build key inside the `concatMap` project function |
+| `src/lib/laptop-build/laptop-build.store.ts` | The fix. The click stamps the build key on the change, and both handlers check it. A change for a model the user left is dropped and clears its share of `isSaving` |
+| `src/lib/laptop-build/*.spec.ts` | Specs with a held-open `Subject` per save. The late-read spec also shows that a synchronous `of()` mock passes on the broken store |
+| `src/lib/filter-panel/filter-panel-loader.ts` | The filter panel three ways: `catchError(() => [])`, `catchError(() => of([]))`, and `loadList`, which keeps `hasError` next to the fallback |
+| `src/lib/filter-panel/filter-panel-resources.ts` | One `httpResource` per filter, tested with `HttpTestingController` |
+| `experiments/` | `run.mjs`, which runs four spec cases that fail on purpose, and `plan-spec/plan-verbatim.spec.ts`, the article's first spec as written |
+| `RESULTS.md` | What each check found, with the exact output |
 
-```bash
-ng generate --help
-```
+## Run it
 
-## Building
-
-To build the library, run:
-
-```bash
-ng build rxjs-traps
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-
-   ```bash
-   cd dist/rxjs-traps
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+From the repository root:
 
 ```bash
-ng test
+corepack pnpm install
+corepack pnpm exec ng build rxjs-traps
+corepack pnpm exec ng test rxjs-traps --watch=false
+corepack pnpm exec ng lint rxjs-traps
+node 03-rxjs-traps/repro/repro.mjs
+node 03-rxjs-traps/experiments/run.mjs
 ```
 
-## Running end-to-end tests
+The runner has four cases. Each one runs `ng test` on one spec file and checks the exit code, the Vitest summary, and the name and message of every failing test.
 
-For end-to-end (e2e) testing, run:
+1. Copies `laptop-build.store.spec.ts` into `experiments/out` and points its store import at `LateReadBuildStore`. Three tests fail.
+2. Copies `laptop-build.store.ts` and its spec, and removes the `isStale()` check from the error handler. One test fails.
+3. Copies `laptop-build.store.ts` and its spec, and removes `this.finishSave()` from the early `EMPTY` branch. One test fails.
+4. Runs the checked-in `experiments/plan-spec/plan-verbatim.spec.ts` against both stores. It fails on the late-read store and passes on the fix.
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Add `--keep` to keep the copies in `experiments/out`.
+The experiments stay out of the library build and the default test run.
