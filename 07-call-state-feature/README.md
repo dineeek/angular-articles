@@ -1,6 +1,6 @@
 # 07: a call state feature for signalStore
 
-Companion code for the article "I put request data inside the union. signalStore changed my mind".
+Companion code for the article [I put request data inside the union. signalStore changed my mind](https://medium.com/@dineeek/i-put-request-data-inside-the-union-signalstore-changed-my-mind-2d7192d66894).
 It follows up on [Prefer Valid State Types in TypeScript](https://blog.stackademic.com/valid-state-types-in-typescript-65c18a414d3c) (2024).
 
 Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, TypeScript 6.0, Vitest.

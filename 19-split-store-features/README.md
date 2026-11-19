@@ -1,7 +1,7 @@
 # 19: split a signalStore into features
 
-Companion code for the article "Three ways to split a signalStore across files. Two of them do not get
-past the compiler and the linter". It reuses `withCallState` from
+Companion code for the article [Three ways to split a signalStore across files. Two of them fail in the compiler or the linter](https://medium.com/@dineeek/three-ways-to-split-a-signalstore-across-files-adadfc89a376).
+It reuses `withCallState` from
 [07-call-state-feature](../07-call-state-feature/README.md).
 
 Angular 22.2, @ngrx/signals 22.0, @ngrx/operators 22.0, TypeScript 6.0, Vitest.

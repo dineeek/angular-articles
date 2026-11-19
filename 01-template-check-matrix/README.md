@@ -1,6 +1,6 @@
 # Template check matrix
 
-Companion code for the article "Which check catches which Angular template bug? I tested eight".
+Companion code for the article [Which check catches which Angular template bug? I tested eight](https://medium.com/@dineeek/which-check-catches-which-angular-template-bug-i-tested-eight-32b7092272df).
 
 Ten tiny recipe components each carry one template bug. `run-matrix.mjs` runs ESLint, the compiler in three settings (plus the legacy `fullTemplateTypeCheck` option, which Angular 22 ignores) and three TestBed setups against each one, and prints which check catches which bug. [RESULTS.md](RESULTS.md) holds the table from the last run.
 
