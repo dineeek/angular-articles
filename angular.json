@@ -216,6 +216,39 @@
           }
         }
       }
+    },
+    "rxjs-traps": {
+      "projectType": "library",
+      "root": "03-rxjs-traps",
+      "sourceRoot": "03-rxjs-traps/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "03-rxjs-traps/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "03-rxjs-traps/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "03-rxjs-traps/tsconfig.spec.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["03-rxjs-traps/**/*.ts", "03-rxjs-traps/**/*.html"],
+            "eslintConfig": "03-rxjs-traps/eslint.config.js"
+          }
+        }
+      }
     }
   }
 }

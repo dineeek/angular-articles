@@ -5,6 +5,7 @@
   "compilerOptions": {
     "paths": {
       "call-state": ["./dist/call-state"],
+      "rxjs-traps": ["./dist/rxjs-traps"],
       "store-features": ["./dist/store-features"]
     },
     "noImplicitOverride": true,
@@ -48,6 +49,12 @@
     },
     {
       "path": "./19-split-store-features/tsconfig.spec.json"
+    },
+    {
+      "path": "./03-rxjs-traps/tsconfig.lib.json"
+    },
+    {
+      "path": "./03-rxjs-traps/tsconfig.spec.json"
     }
   ]
 }
